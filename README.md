@@ -17,8 +17,9 @@ The shell scripts can help you manager many http server in different directories
 	alias stop_http="sh [shell_dir]/stop_http.sh"
 	...
 
-END
 Then in Linux shell, you can use three commands to start http server in any directory, to list all http server in any directory, and to stop all or specified http server(s):
-    start\_http [port]
-    list\_http
-    stop\_http [all | id]
+
+	start\_http [port]
+	list\_http
+	stop\_http [all | id]
+
