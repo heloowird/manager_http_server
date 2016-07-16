@@ -1,9 +1,9 @@
 # manager_http_server
 The scrip aims to manager SimpleHTTPServer nested in Python, running on Linux shell
 
-In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometines, we need tansfer files in the Linux machine that installed ftp server. Under the circumstances, we could install a light web server to share our demo or files. 
+In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files in the Linux machine that installed ftp server. Under the circumstances, we could install a light web server to share our demo or files. 
 
-Usually, The Linux system installs Python in default. In Python, you can run a web server easily by using below command:
+Usually, The Linux system installs Python in default. In Python, you can run a web server easily by using the below command:
 
 	python -m SimpleHTTPServer [port]
 
