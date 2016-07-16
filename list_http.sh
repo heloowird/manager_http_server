@@ -24,6 +24,7 @@ else
 
 		# print the info of the http server
 		echo -e "$count\t$idx\t$port_info\t$proc_info"
+		
 		((count++))
 	done
 fi
