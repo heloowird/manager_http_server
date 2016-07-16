@@ -10,6 +10,7 @@ Usually, The Linux system installs Python in default. In Python, you can run a w
 The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
 
 The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in *.bashrc* can improve availability.
+
 	...
 	alias start_http="sh [shell_dir]/start_http.sh"
 	alias list_http="sh [shell_dir]/list_http.sh"
