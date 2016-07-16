@@ -7,7 +7,7 @@ Usually, The Linux system installs Python in default. In Python, you can run a w
 
 	python -m SimpleHTTPServer [port]
 
-The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
+The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http, ftp.
 
 The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in *.bashrc* can improve availability.
 
@@ -17,7 +17,7 @@ The shell scripts can help you manager many http server in different directories
 	alias stop_http="sh [shell_dir]/stop_http.sh"
 	...
 
-Then in Linux shell, you can use three commands to start http server in any directory, to list all http server in any directory, and to stop all or specified http server(s):
+Then in Linux shell, you can use three commands to start http server in any directory, to list all http server running on the machine, and to stop all or specified http server(s):
 
 	start_http [port]
 	list_http
