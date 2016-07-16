@@ -30,3 +30,5 @@ python -m SimpleHTTPServer $port >/dev/null 2>&1 &
 host_name=`hostname`
 echo "[INFO]: start http server successfully"
 echo "[INFO]: http://$host_name:$port"
+
+exit 0
