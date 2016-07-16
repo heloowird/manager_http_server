@@ -55,3 +55,5 @@ else
 	# list the left http server
 	sh $work_dir/list_http.sh
 fi
+
+exit 0
