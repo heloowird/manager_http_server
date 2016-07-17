@@ -8,6 +8,7 @@ then
 	echo "[ERROR]: please input listen port"
 	exit -1
 fi
+
 port=$1
 
 # check the target port used or not
