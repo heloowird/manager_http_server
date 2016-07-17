@@ -5,12 +5,14 @@ In work or study, we need share/show our demos with/to the team members, especia
 
 Usually, The Linux system installs Python in default. In Python, you can run a web server easily by using the below command:
 
+	```Bash
 	python -m SimpleHTTPServer [port]
 
 The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
 
-The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in **bashrc_profile** can improve availability.
+The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in **~/.bashrc_profile** can improve availability.
 
+	```Bash
 	...
 	alias start_http="sh [shell_dir]/start_http.sh"
 	alias list_http="sh [shell_dir]/list_http.sh"
@@ -19,12 +21,14 @@ The shell scripts can help you manager many http server in different directories
 
 Then in Linux shell, you can use three commands to start http server in any directory, to list all http servers running on the machine, and to stop all or specified http server(s):
 
+	```Bash
 	start_http [port]
 	list_http
 	stop_http [all | id]
 
 For example:
 
+	```Bash
 	localhost:for_mac zhang$ start_http 8090
 	[INFO]: start http server successfully
 	[INFO]: http://localhost:8090
