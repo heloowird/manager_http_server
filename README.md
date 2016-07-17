@@ -5,8 +5,8 @@ In work or study, we need share/show our demos with/to the team members, especia
 
 Usually, The Linux system installs Python in default. In Python, you can run a web server easily by using the below command:
 
-	```Bash
-	python -m SimpleHTTPServer [port]
+```Bash
+python -m SimpleHTTPServer [port]
 
 The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
 
