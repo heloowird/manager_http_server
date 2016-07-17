@@ -7,7 +7,7 @@ Usually, The Linux system installs Python in default. In Python, you can run a w
 
 	python -m SimpleHTTPServer [port]
 
-The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http, ftp.
+The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
 
 The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in **bashrc_profile** can improve availability.
 
