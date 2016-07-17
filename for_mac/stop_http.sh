@@ -17,7 +17,7 @@ fi
 id=$1
 
 # check whethe at least one http server is running
-info=`sh $work_dir/list_http.sh | wc -l`
+info=`ps -ef | grep "SimpleHttpServer" | wc -l`
 if [ $info -lt 2 ]
 then
 	echo "[INFO]: find none http server"

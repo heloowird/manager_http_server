@@ -29,8 +29,8 @@ then
 	for idx in $process_id
 	do
 		kill -9 $idx
-		echo "[INFO]: stop all http server"
 	done
+	echo "[INFO]: stop all http server"
 else
 	# get the pid of the target id.
 	# if the input id is illegal, the pid_num will be empty
