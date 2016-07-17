@@ -57,8 +57,9 @@ else
 		echo "[ERROR]: wrong http server id"
 	fi
 
-	# list the left http server
-	sh $work_dir/list_http.sh
 fi
+
+# list the left http server
+sh $work_dir/list_http.sh
 
 exit 0
