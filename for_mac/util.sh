@@ -10,7 +10,7 @@ function check_pid_is_running()
 		ret=`expr 1 - $pid_running_num`
 		return $ret
 	else
-		return 3
+		return 1
 	fi
-	return 4
+	return 1
 }
