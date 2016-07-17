@@ -12,9 +12,9 @@ then
 	echo "no http server"
 	exit 0
 else
+	count=1
 	# get all pid of http server
 	process_id=`ps -ef | grep "SimpleHTTPServer" | grep -v "grep SimpleHTTPServer" | awk '{print $2}'`
-	count=1
 	for idx in $process_id
 	do
 		# get the web root of the http server
