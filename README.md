@@ -28,46 +28,45 @@ stop_http [all | id]
 
 For example:
 ```Bash
-localhost:for_mac zhang$ start_http 8090
+$ start_http 8090
 [INFO]: start http server successfully
 [INFO]: http://localhost:8090
-localhost:for_mac zhang$ start_http 8090
+$ start_http 8090
 [ERROR]: the port [8090] used
-localhost:for_mac zhang$ start_http 8091
+$ start_http 8091
 [INFO]: start http server successfully
 [INFO]: http://localhost:8091
-localhost:for_mac zhang$ 
-localhost:for_mac zhang$ 
-localhost:for_mac zhang$ 
-localhost:for_mac zhang$ list_http 
+ 
+
+
+$ list_http 
 id	pid	port	web_root
 1	48638	8090	/Users/zhang/zjq/manager_http_server/for_mac
 2	48660	8091	/Users/zhang/zjq/manager_http_server/for_mac
-localhost:for_mac zhang$ cd ~/ && start_http 8088 && cd -
+$ cd ~/ && start_http 8088 && cd -
 [INFO]: start http server successfully
 [INFO]: http://localhost:8088
-localhost:for_mac zhang$ list_http 
+$ list_http 
 id	pid	port	web_root
 1	48638	8090	/Users/zhang/zjq/manager_http_server/for_mac
 2	48660	8091	/Users/zhang/zjq/manager_http_server/for_mac
 3	48696	8088	/Users/zhang
-localhost:for_mac zhang$ 
-localhost:for_mac zhang$ 
-localhost:for_mac zhang$ 
-localhost:for_mac zhang$ stop_http 2
+
+
+
+$ stop_http 2
 [INFO]: stop pid.48660 http server succesfully
 id	pid	port	web_root
 1	48638	8090	/Users/zhang/zjq/manager_http_server/for_mac
 2	48696	8088	/Users/zhang
-localhost:for_mac zhang$ list_http 
+$ list_http 
 id	pid	port	web_root
 1	48638	8090	/Users/zhang/zjq/manager_http_server/for_mac
 2	48696	8088	/Users/zhang
-localhost:for_mac zhang$ stop_http all
+$ stop_http all
 [INFO]: stop all http server
-localhost:for_mac zhang$ list_http 
+$ list_http 
 id	pid	port	web_root
 no http server
-localhost:for_mac zhang$
 ```
 
