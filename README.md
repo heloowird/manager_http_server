@@ -13,9 +13,9 @@ The directory that you run this command is the web root, which means all files a
 The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in **~/.bashrc_profile** can improve availability.
 ```Bash
 ...
-alias start_http="sh [shell_dir]/start_http.sh"
-alias list_http="sh [shell_dir]/list_http.sh"
-alias stop_http="sh [shell_dir]/stop_http.sh"
+alias start_http='sh [shell_dir]/start_http.sh'
+alias list_http='sh [shell_dir]/list_http.sh'
+alias stop_http='sh [shell_dir]/stop_http.sh'
 ...
 ```
 
