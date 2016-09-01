@@ -1,5 +1,5 @@
 # manager_http_server
-The scrip aims to manager SimpleHTTPServer nested in Python, running on Linux.
+The script aims to manager SimpleHTTPServer nested in Python, running on Linux.
 
 In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files in the Linux machine that is not installed with ftp server. Under the circumstances, we could install a light web server to share our demo or files. 
 
