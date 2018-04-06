@@ -18,7 +18,7 @@ The directory that you run this command is the web root, which means all files a
 
 ### Installation
 
-You can just run `sh install.sh -i [the\_target\_directory]` to install the script.
+You can just run `sh install.sh -i [the_target_directory]` to install the script.
 
 ### Usage
 
