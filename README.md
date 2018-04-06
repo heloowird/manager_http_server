@@ -1,11 +1,14 @@
 # manager_http_server
-The script aims to manager SimpleHTTPServer nested in Python, running on Linux.
+The script aims to manager HTTP Server nested in Python, running on Linux.
 
 In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files in the Linux machine that is not installed with ftp server. Under the circumstances, we could install a light web server to share our demo or files. 
 
 Usually, The Linux system installs Python in default. In Python, you can run a web server easily by using the below command:
 ```Bash
+# for python 2
 python -m SimpleHTTPServer [port]
+# or for python 3
+python -m http.server [port]
 ```
 
 The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
@@ -70,3 +73,6 @@ id	pid	port	web_root
 no http server
 ```
 
+### Change Logs
++ 2018/04/05: update to automatically be compatible with python3
+				and	add installing script

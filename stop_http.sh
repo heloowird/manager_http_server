@@ -3,6 +3,16 @@
 work_dir=`dirname $0`
 work_dir=`cd $work_dir;pwd`
 
+source $work_dir/util.sh
+
+# get server name that depends on the python's version
+server_name=$(get_python_server_name)
+if [ -z $server_name ]
+then
+	echo "[Bad Python Version]: please check the version is 2.x.x or 3.x.x."
+	exit -1
+fi
+
 if [ $# -ne 1 ]
 then
 	echo "[ERROR]: please select [all | id]"
@@ -15,43 +25,46 @@ fi
 id=$1
 
 # check whethe at least one http server is running
-info=`ps -ef | grep "SimpleHTTPServer" | wc -l`
+info=`ps -ef | grep -F "$server_name" | wc -l`
 if [ $info -lt 2 ]
 then
-	echo "[INFO]: find none http server"
+	echo "[INFO]: cannot found any http server"
 	exit 0
 fi
 
 if [ $id == "all" ]
 then
 	# get pids of all running http server
-	process_id=`ps -ef | grep "SimpleHTTPServer" | grep -v "grep SimpleHTTPServer" | awk '{print $2}'`
+	process_id=`ps -ef | grep -F "$server_name" | grep -v "grep -F $server_name" | awk '{print $2}'`
 	for idx in $process_id
 	do
-		kill -9 $idx
+		check_pid_is_running $idx $server_name
+		ret=$?
+		if [ $ret -eq 0 ]
+		then
+			kill -9 $idx
+		fi
 	done
 	echo "[INFO]: stop all http server"
 else
 	# get the pid of the target id.
 	# if the input id is illegal, the pid_num will be empty
 	pid_num=`sh $work_dir/list_http.sh | awk -F'\t' -v id_no="$id" '$1==id_no {print $2}'`
-	if [ -n $pid_num ]
+	check_pid_is_running $pid_num $server_name
+	ret=$?
+	if [ $ret -eq 0 ]
 	then
-		# check the pid is really exist in shell
-		pid_exist=`ps -ef | grep "SimpleHTTPServer" | awk -v pid_no="$pid_num" '$2==pid_no {print $0}' | wc -l`
-		if [ $pid_exist -eq 1 ]
+		kill -9 $pid_num
+		if [ $? -eq 0 ]
 		then
-			kill -9 $pid_num
-			if [ $? -eq 0 ]
-			then
-				echo "[INFO]: stop no.${id} http server succesfully"	
-			else
-				echo "[ERROR]: stop no.${id} http server failed"
-			fi
+			echo "[INFO]: stop pid.${pid_num} http server succesfully"	
 		else
-			echo "[ERROR]: wrong http server id"
+			echo "[ERROR]: stop pid.${pid_num} http server failed"
 		fi
+	else
+		echo "[ERROR]: wrong http server id"
 	fi
+
 	# list the left http server
 	sh $work_dir/list_http.sh
 fi

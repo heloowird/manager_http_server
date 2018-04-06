@@ -1,4 +1,4 @@
-#/bin/sh
+#!/bin/sh
 
 function check_pid_is_running()
 {

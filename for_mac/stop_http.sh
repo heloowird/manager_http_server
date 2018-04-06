@@ -5,6 +5,14 @@ work_dir=`cd $work_dir;pwd`
 
 source $work_dir/util.sh
 
+# get server name that depends on the python's version
+server_name=$(get_python_server_name)
+if [ -z $server_name ]
+then
+	echo "[Bad Python Version]: please check the version is 2.x.x or 3.x.x."
+	exit -1
+fi
+
 if [ $# -ne 1 ]
 then
 	echo "[ERROR]: please select [all | id]"
@@ -17,10 +25,10 @@ fi
 id=$1
 
 # check whethe at least one http server is running
-info=`ps -ef | grep "SimpleHTTPServer" | wc -l`
+info=`ps -ef | grep -F "$server_name" | wc -l`
 if [ $info -lt 2 ]
 then
-	echo "[INFO]: find none http server"
+	echo "[INFO]: cannot found any http server"
 	exit 0
 fi
 
@@ -30,7 +38,7 @@ then
 	process_id=`sh $work_dir/list_http.sh | awk -F'\t' 'NR>1 {print $2}'`
 	for idx in $process_id
 	do
-		check_pid_is_running $idx
+		check_pid_is_running $idx $server_name
 		ret=$?
 		if [ $ret -eq 0 ]
 		then
@@ -42,7 +50,7 @@ else
 	# get the pid of the target id.
 	# if the input id is illegal, the pid_num will be empty
 	pid_num=`sh $work_dir/list_http.sh | awk -F'\t' -v id_no="$id" '$1==id_no {print $2}'`
-	check_pid_is_running $pid_num
+	check_pid_is_running $pid_num $server_name
 	ret=$?
 	if [ $ret -eq 0 ]
 	then
