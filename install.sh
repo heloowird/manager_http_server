@@ -39,6 +39,7 @@ function install()
 	echo "#added by manager_http_server" >> $tmp_file
 	for ele in `ls *_http.sh`
 	do
+		cmd_name=${ele%.*}
 		echo "alias $cmd_name='sh $target_dir/$ele'" >> $tmp_file
 	done
 	cp ~/.bashrc ~/.bashrc.bak_by_maneger_http_server
