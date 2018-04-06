@@ -2,10 +2,9 @@
 
 ### 1. Introduction
 
-The script aims to manager HTTP Server nested in Python, running on Linux.
+The tool aims to manager HTTP Server nested in Python, running on Linux and Mac.
 
-In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files in the Linux machine that is not installed with ftp server. Under the circumstances, we could install a light web server to share our demo or files. 
-
+In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files into local or other remote machine that without ftp/sftp server. Under the circumstances, we could install a light web server to share our demo or files. 
 Usually, The Linux system installs Python in default. For Python, you can run a web server easily by using the below command:
 ```Bash
 # for python 2
@@ -18,12 +17,14 @@ The directory that you run this command is the web root, which means all files a
 
 ### 2. Installation
 
-You can just run below command:
+You can just run below commands to install the tool:
 ```Bash
 # clone the repo
 git clone https://github.com/heloowird/manager_http_server.git
+
 # cd repo
 cd manager_http_server
+
 # install the script into specified directory
 sh install.sh -i [the_target_directory_you_want_install]
 ```
