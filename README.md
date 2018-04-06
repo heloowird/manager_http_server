@@ -1,6 +1,6 @@
 # manager_http_server
 
-### Introduction
+### 1. Introduction
 
 The script aims to manager HTTP Server nested in Python, running on Linux.
 
@@ -16,11 +16,11 @@ python -m http.server [port]
 
 The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
 
-### Installation
+### 2. Installation
 
 You can just run `sh install.sh -i [the_target_directory]` to install the script.
 
-### Usage
+### 3. Usage
 
 Then in Linux shell, you can use three commands to start http server in any directory, to list all http servers running on the machine, and to stop all or specified http server(s):
 ```Bash
@@ -29,7 +29,7 @@ list_http
 stop_http [all | id]
 ```
 
-### Example:
+#### 3.1 Example:
 
 ```Bash
 $ start_http 8090
@@ -74,6 +74,6 @@ id	pid	port	web_root
 no http server
 ```
 
-### Change Logs
+### 4. Change Logs
 + 2018/04/05: update to automatically be compatible with python3
 				and	add installing script
