@@ -1,4 +1,7 @@
 # manager_http_server
+
+### Introduction
+
 The script aims to manager HTTP Server nested in Python, running on Linux.
 
 In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files in the Linux machine that is not installed with ftp server. Under the circumstances, we could install a light web server to share our demo or files. 
@@ -13,14 +16,11 @@ python -m http.server [port]
 
 The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
 
-The shell scripts can help you manager many http server in different directories. In Linux, using `alias` in **~/.bashrc_profile** can improve availability.
-```Bash
-...
-alias start_http='sh [shell_dir]/start_http.sh'
-alias list_http='sh [shell_dir]/list_http.sh'
-alias stop_http='sh [shell_dir]/stop_http.sh'
-...
-```
+### Installation
+
+You can just run `sh install.sh -i [the\_target\_directory]` to install the script.
+
+### Usage
 
 Then in Linux shell, you can use three commands to start http server in any directory, to list all http servers running on the machine, and to stop all or specified http server(s):
 ```Bash
@@ -29,7 +29,8 @@ list_http
 stop_http [all | id]
 ```
 
-For example:
+### Example:
+
 ```Bash
 $ start_http 8090
 [INFO]: start http server successfully
