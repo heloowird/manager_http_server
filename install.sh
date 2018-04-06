@@ -20,22 +20,29 @@ function install()
 	fi 
 	target_dir=`cd $target_dir;pwd`
 	echo "the scipts will be installed in $target_dir"
-	for ele in `ls ./*.sh`
-	do
-		if [ -f $target_dir/$ele ] 
-		then
-			mv $target_dir/$ele $target_dir/$ele.bak_by_install_maneger_http_server
-			echo "$target_dir/$ele exists, bakup it as $target_dir/$ele.bak_by_install_maneger_http_server"
-		fi
-		cp $ele $target_dir
-		if [ $? -eq 0 ]
-		then
-			echo "copy $ele to $target_dir done"
-		else
-			echo "copy $ele to $target_dir failed, please check file or directory permission"
-			exit 1
-		fi
-	done
+
+	if [ "$target_dir" != "$work_dir" ]
+	then
+		for ele in `ls ./*.sh`
+		do
+			if [ -f $target_dir/$ele ] 
+			then
+				mv $target_dir/$ele $target_dir/$ele.bak_by_install_maneger_http_server
+				echo "$target_dir/$ele exists, bakup it as $target_dir/$ele.bak_by_install_maneger_http_server"
+			fi
+			cp $ele $target_dir
+			if [ $? -eq 0 ]
+			then
+				echo "copy $ele to $target_dir done"
+			else
+				echo "copy $ele to $target_dir failed, please check file or directory permission"
+				exit 1
+			fi
+		done
+	else
+		echo "$target_dir is same as work_dir, and it does not need to copy files"
+	fi
+
 	echo "#added by manager_http_server" >> $tmp_file
 	for ele in `ls *_http.sh`
 	do
