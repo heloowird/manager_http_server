@@ -1,5 +1,7 @@
 # manager_http_server
 
+### 0. 中文说明: [使用Shell 脚本管理Python 内置的HTTPServer 服务](http://heloowird.com/2016/02/21/manager_python_http_server/)
+
 ### 1. Introduction
 
 The tool aims to manager HTTP Server nested in Python, running on Linux and Mac.
