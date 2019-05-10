@@ -7,30 +7,31 @@ tmp_file=$work_dir/.tmp_info_are_u_serious.$(date +%s)
 
 function install()
 {
-	if [ $# -gt 1 ]
-	then
-		print_help
-		exit 1
-	fi
+    if [ $# -gt 1 ]
+    then
+        print_help
+        exit 1
+    fi
 
-	target_dir='/opt/manager_http_server'
-	if [ $# -eq 1 ]
+    target_dir='/opt/manager_http_server'
+    if [ $# -eq 1 ]
     then
         target_dir=$1
     fi
-	if [ ! -d $target_dir ]
-	then
-		mkdir -p $target_dir
+
+    if [ ! -d $target_dir ]
+    then
+        mkdir -p $target_dir
         if [ $? -eq 0 ]
         then
-		    echo "$target_dir not exists, mkdir success"
+            echo "$target_dir not exists, mkdir success"
         else
             echo "cannot acess $target_dir"
             exit 1
         fi
-	fi 
-	target_dir=`cd $target_dir;pwd`
-	echo "the scipts will be installed in $target_dir"
+    fi 
+    target_dir=`cd $target_dir;pwd`
+    echo "the scipts will be installed in $target_dir"
 
     shell_dir=${work_dir}/for_linux
     if [ "$(uname)" == "Darwin" ]
@@ -44,72 +45,72 @@ function install()
         exit 1
     fi
 
-	if [ "$target_dir" != "$shell_dir" ]
-	then
-		for ele in `cd $shell_dir;ls ./*.sh`
-		do
-			if [ -f $target_dir/$ele ] 
-			then
+    if [ "$target_dir" != "$shell_dir" ]
+    then
+        for ele in `cd $shell_dir;ls ./*.sh`
+        do
+            if [ -f $target_dir/$ele ] 
+            then
                 mv $target_dir/$ele $target_dir/$ele.bak.$(date +%s)
-				echo "$target_dir/$ele exists, bakup it as $target_dir/$ele.bak_by_install_maneger_http_server"
-			fi
-			cp $shell_dir/$ele $target_dir
-			if [ $? -eq 0 ]
-			then
-				echo "copy $shell_dir/$ele to $target_dir done"
-			else
+                echo "$target_dir/$ele exists, bakup it as $target_dir/$ele.bak_by_install_maneger_http_server"
+            fi
+            cp $shell_dir/$ele $target_dir
+            if [ $? -eq 0 ]
+            then
+                echo "copy $shell_dir/$ele to $target_dir done"
+            else
                 echo "copy $shell_dir/$ele to $target_dir failed, please check file or directory permission"
-				exit 1
-			fi
-		done
-	else
-		echo "$target_dir is same as work_dir, and it does not need to copy files"
-	fi
+                exit 1
+            fi
+        done
+    else
+        echo "$target_dir is same as work_dir, and it does not need to copy files"
+    fi
 
-	echo "" >> $tmp_file
-	echo "#added by manager_http_server" >> $tmp_file
+    echo "" >> $tmp_file
+    echo "#added by manager_http_server" >> $tmp_file
     for ele in `cd $target_dir;ls *_http.sh`
-	do
-		cmd_name=${ele%.*}
-		echo "alias $cmd_name='sh $target_dir/$ele'" >> $tmp_file
-	done
-	cp ~/.bashrc ~/.bashrc.bak_by_maneger_http_server
-	cat $tmp_file >> ~/.bashrc
-	if [ $? -eq 0 ]
-	then
-		echo "install manager_http_server SUCCESS"
-		echo "restart shell to make it work, but if still not work, please source ~/.bashrc mannually"
-	else
-		echo "install manager_http_server failed, please check ~/.bashrc write permission"
-	fi
-	rm -f $tmp_file
+    do
+        cmd_name=${ele%.*}
+        echo "alias $cmd_name='sh $target_dir/$ele'" >> $tmp_file
+    done
+    cp ~/.bashrc ~/.bashrc.bak_by_maneger_http_server
+    cat $tmp_file >> ~/.bashrc
+    if [ $? -eq 0 ]
+    then
+        echo "install manager_http_server SUCCESS"
+        echo "restart shell to make it work, but if still not work, please source ~/.bashrc mannually"
+    else
+        echo "install manager_http_server failed, please check ~/.bashrc write permission"
+    fi
+    rm -f $tmp_file
 }
 
 function print_help()
 {
-	echo "Usage: sh install.sh [-i|-h]"
-	echo "For example:"
-	echo "       sh install.sh -i(nstall) target_dir: installed into specified directory"
-	echo "       sh install.sh -h: print help info"
+    echo "Usage: sh install.sh [-i|-h]"
+    echo "For example:"
+    echo "       sh install.sh -i(nstall) target_dir: installed into specified directory"
+    echo "       sh install.sh -h: print help info"
 }
 
 if [ $# -eq 0 ]
 then
-	print_help
-	exit 1
+    print_help
+    exit 1
 fi
 
 while getopts "i:h" arg
 do
-	case $arg in
-		i)
-			install $OPTARG
-			;;
-		h)
-			print_help
-			;;
-		*)  
-			print_help
-			;; 
-	esac
+    case $arg in
+        i)
+            install $OPTARG
+            ;;
+        h)
+            print_help
+            ;;
+        *)  
+            print_help
+            ;; 
+    esac
 done
