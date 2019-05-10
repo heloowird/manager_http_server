@@ -3,39 +3,50 @@
 work_dir=`dirname $0`
 work_dir=`cd $work_dir;pwd`
 
-tmp_file=$work_dir/.tmp_info_are_u_serious
+tmp_file=$work_dir/.tmp_info_are_u_serious.$(date +%s)
 
 function install()
 {
-	if [ $# -ne 1 ]
+	if [ $# -gt 1 ]
 	then
 		print_help
 		exit 1
 	fi
-	target_dir=$1
+
+	target_dir='/opt/manager_http_server'
+	if [ $# -eq 1 ]
+    then
+        target_dir=$1
+    fi
 	if [ ! -d $target_dir ]
 	then
 		mkdir -p $target_dir
-		echo "$target_dir not exists, mkdir success"
+        if [ $? -eq 0 ]
+        then
+		    echo "$target_dir not exists, mkdir success"
+        else
+            echo "cannot acess $target_dir"
+            exit 1
+        fi
 	fi 
 	target_dir=`cd $target_dir;pwd`
 	echo "the scipts will be installed in $target_dir"
 
-    shell_dir='${work_dir}/for_linux'
+    shell_dir=${work_dir}/for_linux
     if [ "$(uname)" == "Darwin" ]
     then
-        shell_dir='${work_dir}/for_mac'
-    else if [ "$(uname -s)" == "Linux" ]
+        shell_dir=${work_dir}/for_mac
+    elif [ "$(uname -s)" == "Linux" ]
     then
-        shell_dir='${work_dir}/for_linux'
+        shell_dir=${work_dir}/for_linux
     else
-        echo "Unknow OS"
+        echo "Unsurport OS"
         exit 1
     fi
 
 	if [ "$target_dir" != "$shell_dir" ]
 	then
-		for ele in `ls ${shell_dir}/*.sh`
+		for ele in `cd $shell_dir;ls ./*.sh`
 		do
 			if [ -f $target_dir/$ele ] 
 			then
@@ -55,8 +66,9 @@ function install()
 		echo "$target_dir is same as work_dir, and it does not need to copy files"
 	fi
 
+	echo "" >> $tmp_file
 	echo "#added by manager_http_server" >> $tmp_file
-	for ele in `ls *_http.sh`
+    for ele in `cd $target_dir;ls *_http.sh`
 	do
 		cmd_name=${ele%.*}
 		echo "alias $cmd_name='sh $target_dir/$ele'" >> $tmp_file
@@ -77,7 +89,7 @@ function print_help()
 {
 	echo "Usage: sh install.sh [-i|-h]"
 	echo "For example:"
-	echo "       sh install.sh -i(nstall) target_dir: install into specified directory"
+	echo "       sh install.sh -i(nstall) target_dir: installed into specified directory"
 	echo "       sh install.sh -h: print help info"
 }
 
