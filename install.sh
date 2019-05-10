@@ -40,7 +40,7 @@ function install()
     then
         shell_dir=${work_dir}/for_linux
     else
-        echo "Unsurport OS"
+        echo "Unsupport OS"
         exit 1
     fi
 
