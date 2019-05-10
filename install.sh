@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 work_dir=`dirname $0`
 work_dir=`cd $work_dir;pwd`
@@ -21,21 +21,33 @@ function install()
 	target_dir=`cd $target_dir;pwd`
 	echo "the scipts will be installed in $target_dir"
 
-	if [ "$target_dir" != "$work_dir" ]
+    shell_dir='${work_dir}/for_linux'
+    if [ "$(uname)" == "Darwin" ]
+    then
+        shell_dir='${work_dir}/for_mac'
+    else if [ "$(uname -s)" == "Linux" ]
+    then
+        shell_dir='${work_dir}/for_linux'
+    else
+        echo "Unknow OS"
+        exit 1
+    fi
+
+	if [ "$target_dir" != "$shell_dir" ]
 	then
-		for ele in `ls ./*.sh`
+		for ele in `ls ${shell_dir}/*.sh`
 		do
 			if [ -f $target_dir/$ele ] 
 			then
-				mv $target_dir/$ele $target_dir/$ele.bak_by_install_maneger_http_server
+                mv $target_dir/$ele $target_dir/$ele.bak.$(date +%s)
 				echo "$target_dir/$ele exists, bakup it as $target_dir/$ele.bak_by_install_maneger_http_server"
 			fi
-			cp $ele $target_dir
+			cp $shell_dir/$ele $target_dir
 			if [ $? -eq 0 ]
 			then
-				echo "copy $ele to $target_dir done"
+				echo "copy $shell_dir/$ele to $target_dir done"
 			else
-				echo "copy $ele to $target_dir failed, please check file or directory permission"
+                echo "copy $shell_dir/$ele to $target_dir failed, please check file or directory permission"
 				exit 1
 			fi
 		done
