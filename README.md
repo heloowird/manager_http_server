@@ -90,3 +90,4 @@ no http server
 ### 4. Change Logs
 + 2018/04/05: update to automatically be compatible with python3
 				and	add installing script
++ 2018/05/11: update installing script
