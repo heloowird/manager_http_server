@@ -6,27 +6,28 @@
 
 ### 1. Introduction
 
-The tool aims to manager HTTP Server nested in Python, running on Linux and Mac.
+The tool aims to manager HTTP Server nested in Python, running on Linux or Mac.
 
-In work or study, we need share/show our demos with/to the team members, especially which are writen by html script. Sometimes, we need transfer files into local or other remote machine that without ftp/sftp server. Under the circumstances, we could install a light web server to share our demo or files. 
+In work or study, we need share our demos or data with the team, especially which are writen by html script. Sometimes, we need transfer files into local or other remote machine that without ftp/sftp server. Under the circumstances, we could install a light web server to share our demo or files. 
+
 Usually, The Linux system installs Python in default. For Python, you can run a web server easily by using the below command:
 ```Bash
 # for python 2
 python -m SimpleHTTPServer [port]
-# or for python 3
+# for python 3
 python -m http.server [port]
 ```
 
-The directory that you run this command is the web root, which means all files and sub-directories in this directory are accessed via http.
+**The directory that you run above command is the web root**/, which means all files and sub-directories in the directory are accessed via http.
 
 ### 2. Installation
 
-You can just run below commands to install the tool:
+you can just run below commands to install the tool:
 ```Bash
-# clone the repo
+# step1. clone the repo
 git clone https://github.com/heloowird/manager_http_server.git
 
-# cd repo
+# step2. navigator to the repo directory
 cd manager_http_server
 
 # install the script into specified directory
@@ -35,10 +36,15 @@ sh install.sh -i [the_target_directory_installed]
 
 ### 3. Usage
 
-Then in Linux shell, you can use three commands to start http server in any directory, to list all http servers running on the machine, and to stop all or specified http server(s):
+then in Linux shell, you can use below commands to manager http servers:
 ```Bash
+# start http server in any directory you share
 start_http [port]
+
+# list all http servers running on the machine
 list_http
+
+# stop all or specified http server(s)
 stop_http [all | id]
 ```
 
