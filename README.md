@@ -30,7 +30,7 @@ git clone https://github.com/heloowird/manager_http_server.git
 # step2. navigator to the repo directory
 cd manager_http_server
 
-# install the script into specified directory
+# step3. install the script into specified directory
 sh install.sh -i [the_target_directory_installed]
 ```
 
